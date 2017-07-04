@@ -1,0 +1,11 @@
+---
+- name: Delete the instance
+  include: instance-remove.yml
+  tags: ['remove']
+
+- name: Create the new instance
+  include: instance-create-ubuntu.yml
+  tags: ['create']
+
+- name: Create the desktop
+  include: create-desktop.yml

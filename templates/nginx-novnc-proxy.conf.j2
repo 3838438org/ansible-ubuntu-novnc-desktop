@@ -1,0 +1,40 @@
+server {
+	listen 80 default_server;
+    listen 443 ssl;
+
+	root /noVNC;
+	index vnc.html vnc_lite.html index.html;
+
+    ssl on;
+    ssl_certificate {{ nginx_ssl_certificate }};
+    ssl_certificate_key {{ nginx_ssl_certificate_key }};
+
+    ssl_session_timeout 5m;
+
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+    ssl_ciphers "HIGH:!aNULL:!MD5 or HIGH:!aNULL:!MD5:!3DES";
+    ssl_prefer_server_ciphers on;
+
+    location / {
+        try_files $uri @proxy;
+    }
+
+    location = /redirect.html {
+        try_files $uri @proxy;
+    }
+
+    location @proxy {
+        proxy_set_header X-Real-IP  $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $remote_addr;
+        proxy_pass http://127.0.0.1:{{ novnc_port | default(6080) }};
+        max_ranges 0;
+    }
+
+    location = /websockify {
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_pass http://127.0.0.1:{{ novnc_port | default(6080) }};
+    }
+}

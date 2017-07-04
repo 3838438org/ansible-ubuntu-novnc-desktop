@@ -1,0 +1,20 @@
+- name: Delete Instance
+  hosts: localhost
+  strategy: free
+  connection: local
+  vars_files:
+  - credentials.yml
+  vars:
+    zone: us-east1-c
+  tasks:
+  - name: Delete instance
+    gce:
+      instance_names: "dev{{ item }}"
+      service_account_email: "{{ service_account_email }}"
+      project_id: "{{ project_id }}"
+      credentials_file: '{{ credentials_file }}'
+      tags: tutorial
+      state: deleted
+      zone: "{{ zone }}"
+    with_sequence: start={{ start | default(1) }} end={{ end | default(1) }}
+

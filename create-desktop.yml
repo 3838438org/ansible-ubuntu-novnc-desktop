@@ -1,0 +1,13 @@
+---
+- name: Configure instance
+  hosts: all
+  become: yes
+  vars_files:
+  - credentials.yml
+
+  roles:
+  - role: ansible-role-lxde-install
+  - role: ansible-role-vnc-install
+  - role: ansible-role-nginx-install
+  - role: ansible-role-nginx-ssl-selfsigned
+  - role: ansible-role-novnc-install

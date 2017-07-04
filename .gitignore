@@ -1,0 +1,9 @@
+.idea
+*.iml
+security
+inventory/gce.ini
+tmp
+roles
+*.jar
+credentials.yml
+.DS_STORE
