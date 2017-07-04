@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-VOLUME /desktop
+ARG username
 RUN apt-get update && \
     apt-get install -y \
         python \
@@ -11,12 +11,13 @@ RUN apt-get update && \
         python \
         openssh-client \
         git \
-        vim-tiny && \
+        vim && \
      wget https://bootstrap.pypa.io/get-pip.py && \
      python get-pip.py && \
      pip install \
          ansible \
          apache-libcloud \
          pyopenssl \
-         requests
+         requests && \
+     useradd -m $username
 CMD /bin/bash
