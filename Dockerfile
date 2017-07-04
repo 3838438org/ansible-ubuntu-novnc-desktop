@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-
+VOLUME /desktop
 RUN apt-get update && \
     apt-get install -y \
         python \
@@ -19,5 +19,4 @@ RUN apt-get update && \
          apache-libcloud \
          pyopenssl \
          requests
-
 CMD /bin/bash

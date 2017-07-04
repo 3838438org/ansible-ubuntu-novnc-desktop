@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build -t ansible-runner .
+docker build -t carlosfrias/ansible-runner .
