@@ -11,3 +11,13 @@
   - role: ansible-role-nginx-install
   - role: ansible-role-nginx-ssl-selfsigned
   - role: ansible-role-novnc-install
+
+  tasks:
+  - name: Add apt-get repository
+    apt_repository:
+      repo: 'ppa:openjdk-r/ppa'
+
+  - name: Install Java
+    apt:
+      name: openjdk-8-jdk
+      state: present
