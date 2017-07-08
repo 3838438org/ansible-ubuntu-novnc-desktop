@@ -10,7 +10,7 @@
   - role: ansible-role-vnc-install
   - role: ansible-role-nginx-install
   - role: ansible-role-nginx-ssl-selfsigned
-  - role: ansible-role-novnc-install
+  - { role: ansible-role-novnc-install, notify: "Start Supervisor" }
 
   tasks:
   - name: Add apt-get repository
@@ -21,3 +21,16 @@
     apt:
       name: openjdk-8-jdk
       state: present
+
+  - name: Prepare download folder
+    become: no
+    file:
+      path: ~/Download
+      state: directory
+
+  - name: Download
+    become: no
+    get_url:
+      dest: ~/Download/download.jar
+      url: https://osbot.org/mvc/get
+
