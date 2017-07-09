@@ -4,7 +4,6 @@
   become: yes
   vars_files:
   - credentials.yml
-
   roles:
   - ansible-role-lxde-install
   - ansible-role-vnc-install
@@ -12,6 +11,11 @@
   - ansible-role-nginx-ssl-selfsigned
   - ansible-role-novnc-install
 
+- name: Configure client
+  hosts: all
+  become: yes
+  vars_files:
+  - credentials.yml
   tasks:
   - name: Add apt-get repository
     apt_repository:
