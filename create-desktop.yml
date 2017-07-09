@@ -6,9 +6,9 @@
   - credentials.yml
 
   roles:
-  - role: ansible-role-lxde-install
-  - role: ansible-role-vnc-install
-  - { }role: ansible-role-nginx-install, notify: "Start Nginx" }
+  - { role: ansible-role-lxde-install, notify: "Start Supervisor" }
+  - { role: ansible-role-vnc-install, notify: "Start Supervisor" }
+  - { role: ansible-role-nginx-install, notify: "Start Nginx" }
   - role: ansible-role-nginx-ssl-selfsigned
   - { role: ansible-role-novnc-install, notify: "Start Supervisor" }
 
