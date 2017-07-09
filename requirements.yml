@@ -4,3 +4,4 @@
 - src: https://github.com/carlosfrias/ansible-role-vnc-install.git
 - src: https://github.com/carlosfrias/ansible-role-novnc-install.git
 - src: https://github.com/carlosfrias/ansible-role-nginx-install.git
+- src: https://github.com/carlosfrias/ansible-osbot.git
