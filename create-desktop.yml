@@ -33,8 +33,6 @@
     get_url:
       dest: ~/Downloads/osbot.jar
       url: https://osbot.org/mvc/get
-    notify:
-    - "Run client"
 
   - name: Run client
     become: no
