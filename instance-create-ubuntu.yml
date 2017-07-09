@@ -7,7 +7,7 @@
     machine_type: n1-standard-1
     image: ubuntu-1404
     zone: us-east1-c
-    host_prefix: temp
+    host_prefix: bot
   tasks:
   - name: Install GCE Dependencies
     pip:
