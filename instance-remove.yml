@@ -6,7 +6,7 @@
   - credentials.yml
   vars:
     zone: us-east1-c
-    host_prefix: dev
+    host_prefix: bot
   tasks:
   - name: Delete instance
     gce:
