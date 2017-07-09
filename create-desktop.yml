@@ -8,7 +8,7 @@
   roles:
   - role: ansible-role-lxde-install
   - role: ansible-role-vnc-install
-  - role: ansible-role-nginx-install
+  - { }role: ansible-role-nginx-install, notify: "Start Nginx" }
   - role: ansible-role-nginx-ssl-selfsigned
   - { role: ansible-role-novnc-install, notify: "Start Supervisor" }
 
@@ -25,12 +25,15 @@
   - name: Prepare download folder
     become: no
     file:
-      path: ~/Download
+      path: ~/Downloads
       state: directory
 
-  - name: Download
+  - name: Download client
     become: no
     get_url:
-      dest: ~/Download/download.jar
+      dest: ~/Downloads/osbot.jar
       url: https://osbot.org/mvc/get
 
+  - name: Run client
+    become: no
+    shell: java -jar ~/Downloads/osbot.jar
