@@ -6,11 +6,11 @@
   - credentials.yml
   vars:
     zone: us-east1-c
-    hostname: dev
+    host_prefix: dev
   tasks:
   - name: Delete instance
     gce:
-      instance_names: "{{ hostname }}{{ item }}"
+      instance_names: "{{ host_prefix }}{{ item }}"
       service_account_email: "{{ service_account_email }}"
       project_id: "{{ project_id }}"
       credentials_file: '{{ credentials_file }}'
