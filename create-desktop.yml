@@ -43,3 +43,7 @@
   - name: Run client
     become: no
     shell: java -jar ~/Downloads/osbot.jar
+    environment:
+      DISPLAY: ':1'
+    async: 0
+    poll: 0
