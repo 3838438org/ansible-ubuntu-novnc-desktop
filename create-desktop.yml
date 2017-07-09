@@ -1,6 +1,7 @@
 ---
 - name: Configure instance
   hosts: all
+  tags: ['core-instance']
   become: yes
   vars_files:
   - credentials.yml
@@ -13,6 +14,7 @@
 
 - name: Configure client
   hosts: all
+  tags: ['client']
   become: yes
   vars_files:
   - credentials.yml
